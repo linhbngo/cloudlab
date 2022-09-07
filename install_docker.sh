@@ -25,5 +25,5 @@ sudo cp /local/repository/docker_config/daemon.json /etc/docker/daemon.json
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
-sudo mv /etc/containerd/config.toml /etc/containerd/config.toml/backup
+sudo mv /etc/containerd/config.toml /etc/containerd/config.toml.backup
 sudo systemctl restart containerd
