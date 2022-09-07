@@ -26,4 +26,4 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 
 sudo mv /etc/containerd/config.toml /etc/containerd/config.toml/backup
-systemctl restart containerd
+sudo systemctl restart containerd
