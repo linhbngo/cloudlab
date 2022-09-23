@@ -9,7 +9,7 @@ sudo chmod -R a+rwx /opt/keys
 
 for i in $(seq 2 $2)
 do
-  echo "/opt/keys 192.168.1.$(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+  echo "/opt/keys 192.168.1.$i(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
 done
 sudo systemctl restart nfs-kernel-server
 
