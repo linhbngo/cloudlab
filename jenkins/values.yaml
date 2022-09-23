@@ -337,6 +337,9 @@ controller:
         - id: "${chart-admin-username}"
           name: "Jenkins Admin"
           password: "${chart-admin-password}"
+        - id: pokemon
+          name: "Pikachu"
+          password: "pikachu"
     # Ignored if authorizationStrategy is defined in controller.JCasC.configScripts
     authorizationStrategy: |-
       loggedInUsersCanDoAnything:
