@@ -124,7 +124,7 @@ controller:
     allowPrivilegeEscalation: false
   servicePort: 8080
   targetPort: 8080
-  nodePort: 8080
+  nodePort: 30000
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
   # Use ClusterIP if your setup includes ingress controller
   #serviceType: ClusterIP
