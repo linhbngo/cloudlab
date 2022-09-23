@@ -40,7 +40,7 @@ for i in range(num_nodes):
   # install Docker
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
   # install Kubernetes
-  node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
   
   if i == 0:
