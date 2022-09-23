@@ -245,7 +245,7 @@ controller:
     - workflow-aggregator:590.v6a_d052e5a_a_b_5
     - git:4.11.5
     - configuration-as-code:1512.vb_79d418d5fc8
-    - sshagent:295.v9ca_a_1c7cc3a_a_
+    - ssh-agent:295.v9ca_a_1c7cc3a_a_
 
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: true
