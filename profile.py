@@ -37,13 +37,16 @@ for i in range(num_nodes):
   iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
   link.addInterface(iface)
   
-  # setup Docker
+  # install Docker
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
-  # setup Kubernetes
+  # install Kubernetes
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
   
   if i == 0:
+    # install Kubernetes manager
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh"))
+    # install Helm
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
