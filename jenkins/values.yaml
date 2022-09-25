@@ -824,8 +824,8 @@ agent:
             resourceLimitCpu: "1"
             resourceLimitMemory: "1024Mi"
             envVars:
-              - name: "docker-token"
-                value: "12345"
+              - name: DOCKER_TOKEN
+                value: 12345
 # Here you can add additional agents
 # They inherit all values from `agent` so you only need to specify values which differ
 additionalAgents: {}
