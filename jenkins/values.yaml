@@ -824,12 +824,12 @@ agent:
             resourceLimitCpu: "1"
             resourceLimitMemory: "1024Mi"
             envVars:
-              containerEnvVar:
-                key: "DOCKER_TOKEN"
-                value: "12345"
-              containerEnvVar:
-                key: "DOCKER_REGISTRY"
-                value: "23456"
+              - containerEnvVar:
+                  key: "DOCKER_TOKEN"
+                  value: "12345"
+              - containerEnvVar:
+                  key: "DOCKER_REGISTRY"
+                  value: "23456"
 # Here you can add additional agents
 # They inherit all values from `agent` so you only need to specify values which differ
 additionalAgents: {}
