@@ -824,11 +824,11 @@ agent:
             resourceLimitCpu: "1"
             resourceLimitMemory: "1024Mi"
             envVars:
-              - key: DOCKER_TOKEN
+              - name: DOCKER_TOKEN
                 value: "12345"
-              - key: DOCKER_REGISTRY
+              - name: DOCKER_REGISTRY
                 value: "YOUR_DOCKERHUB_USERNAME/go_server"
-              - key: DOCKER_USER
+              - name: DOCKER_USER
                 value: "YOUR_DOCKERHUB_USERNAME"
 # Here you can add additional agents
 # They inherit all values from `agent` so you only need to specify values which differ
