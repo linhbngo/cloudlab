@@ -812,6 +812,10 @@ agent:
       - name: docker
         label: jenkins-docker
         serviceAccount: jenkins
+        volumes:
+          - hostPathVolume:
+              hostPath: "/var/run/docker.sock"
+              mountPath: "/var/run/docker.sock"
         containers:
           - name: docker
             image: docker
@@ -823,10 +827,6 @@ agent:
             resourceRequestMemory: "512Mi"
             resourceLimitCpu: "1"
             resourceLimitMemory: "1024Mi"
-            volumes:
-              - hostPathVolume:
-                  hostPath: "/var/run/docker.sock"
-                  mountPath: "/var/run/docker.sock"
             envVars:
               - containerEnvVar:
                   key: "DOCKER_TOKEN"
