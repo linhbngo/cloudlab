@@ -11,7 +11,7 @@ spec:
     - MYDOMAIN
   dnsNames:
     - MYDOMAIN
-    - '*.MY.com'
+    - '*.MYDOMAIN'
   keySize: 2048
   keyAlgorithm: rsa
   issuerRef:
