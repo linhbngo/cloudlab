@@ -7,13 +7,9 @@ spec:
   secretName: MYDOMAIN-com-cert-secret
   isCA: true
   commonName: '*.MYDOMAIN'
-  organization:
-    - MYDOMAIN
   dnsNames:
     - MYDOMAIN
     - '*.MYDOMAIN'
-  keySize: 2048
-  keyAlgorithm: rsa
   issuerRef:
     name: MYDOMAIN-ca-issuer
     kind: ClusterIssuer
