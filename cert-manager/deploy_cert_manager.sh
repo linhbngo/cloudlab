@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 kubectl create namespace cert-manager
 kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
