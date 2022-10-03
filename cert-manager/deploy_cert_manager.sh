@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
+kubectl create namespace container-registry
 kubectl create namespace cert-manager
 kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 helm repo add jetstack https://charts.jetstack.io
