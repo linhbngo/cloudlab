@@ -20,4 +20,4 @@ kubectl apply -f x509.yaml
 kubectl describe certificate $(hostname -d)-com-cert --namespace container-registry
 
 kubectl get secret --namespace container-registry
-kubectl get secret $(hostname -d)-com-cert-secret -o yaml --namespace container-registry
+kubectl get secret $(hostname -d)-com-cert-secret --namespace container-registry
