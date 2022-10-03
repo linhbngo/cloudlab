@@ -9,7 +9,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`registry.MY_DOMAIN.com`)
+      match: Host(`registry.MYDOMAIN.com`)
       services:
         - kind: Service
           port: 5000
@@ -20,7 +20,7 @@ spec:
         - name: docker-registry-cors
           namespace: container-registry
   tls:
-    secretName: MY_DOMAIN-com-cert-secret
+    secretName: MYDOMAIN-com-cert-secret
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
@@ -36,7 +36,7 @@ spec:
       - POST
       - DELETE
     accessControlAllowOriginList:
-      - https://registry-ui.MY_DOMAIN.com
+      - https://registry-ui.MYDOMAIN.com
     accessControlAllowCredentials: true
     accessControlMaxAge: 100
     addVaryHeader: true
