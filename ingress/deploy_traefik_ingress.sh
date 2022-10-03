@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 kubectl create namespace traefik
 helm repo add traefik https://helm.traefik.io/traefik
