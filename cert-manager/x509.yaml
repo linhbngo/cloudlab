@@ -1,15 +1,15 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: MYDOMAIN-com-cert
+  name: MY_DOMAIN-com-cert
   namespace: container-registry
 spec:
-  secretName: MYDOMAIN-com-cert-secret
+  secretName: MY_DOMAIN-com-cert-secret
   isCA: true
-  commonName: '*.MYDOMAIN'
+  commonName: '*.MY_DOMAIN.com'
   dnsNames:
-    - MYDOMAIN
-    - '*.MYDOMAIN'
+    - MY_DOMAIN.com
+    - '*.MY_DOMAIN.com'
   issuerRef:
-    name: MYDOMAIN-ca-issuer
+    name: MY_DOMAIN-ca-issuer
     kind: ClusterIssuer
