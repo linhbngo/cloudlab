@@ -1,6 +1,5 @@
 #!/bin/bash
 
-kubectl label nodes $(hostname) node-type=master
 kubectl create namespace traefik
 helm repo add traefik https://helm.traefik.io/traefik
 helm repo update
