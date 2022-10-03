@@ -22,3 +22,5 @@ sed -i "s/MYHOST/$(hostname -f)/g" ingress.yaml
 kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.8/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
 kubectl apply -f ingress.yaml
 
+# Alternatively, add a new hosted name entry with a one-liner
+# echo -e "111.222.333.444\tregistry.MY_DOMAIN.com" | sudo tee -a /etc/hosts
