@@ -14,5 +14,8 @@ helm upgrade --install docker-registry \
     --set secrets.htpasswd=$(cat $HOME/temp/registry-creds/htpasswd) \
     twuni/docker-registry \
     --version 1.10.1
-    
+   
+cp /local/repository/registry/ingress.yaml .
+sed -i "s/MYDOMAIN/$(hostname -d)/g" ingress.yaml
+sed -i "s/MYHOST/$(hostname -f)/g" ingress.yaml
     
