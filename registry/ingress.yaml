@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(\`MYHOST\`)
+      match: Host(`MYHOST`)
       services:
         - kind: Service
           port: 5000
