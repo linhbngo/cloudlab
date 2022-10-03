@@ -16,8 +16,8 @@ helm upgrade --install docker-registry \
     --version 1.10.1
    
 cp /local/repository/registry/ingress.yaml .
-#sed -i "s/MYDOMAIN/$(hostname -d)/g" ingress.yaml
-#sed -i "s/MYHOST/$(hostname -f)/g" ingress.yaml
+sed -i "s/MYDOMAIN/$(hostname -d)/g" ingress.yaml
+sed -i "s/MYHOST/$(hostname -d)/g" ingress.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.8/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
 kubectl apply -f ingress.yaml
