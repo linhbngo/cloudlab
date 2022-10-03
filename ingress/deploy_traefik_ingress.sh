@@ -9,7 +9,6 @@ helm upgrade --install traefik \
     --set dashboard.enabled=true \
     --set rbac.enabled=true \
     --set="additionalArguments={--api.dashboard=true,--log.level=INFO,--providers.kubernetesingress.ingressclass=traefik-internal,--serversTransport.insecureSkipVerify=true}" \
-    traefik/traefik \
-    --version 9.1.1
+    traefik/traefik
     
     
