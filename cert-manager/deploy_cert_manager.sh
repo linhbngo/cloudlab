@@ -19,7 +19,7 @@ cp /local/repository/cert-manager/x509.yaml .
 sed -i "s/MYDOMAIN/$(hostname -d)/g" x509.yaml
 kubectl apply -f x509.yaml
 
-kubectl describe certificate $(hostname -d)-com-cert --namespace container-registry
+kubectl describe certificate $(hostname -d)-cert
 
-kubectl get secret --namespace container-registry
-kubectl get secret $(hostname -d)-com-cert-secret --namespace container-registry
+kubectl get secret
+kubectl get secret $(hostname -d)-cert-secret
