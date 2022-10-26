@@ -8,8 +8,11 @@ export TLSPORT=$(kubectl get svc -n ingress-nginx -o wide | grep NodePort | awk 
 sudo mkdir -p /etc/docker/certs.d/$(hostname -f)\:$TLSPORT/
 sudo cp server.crt /etc/docker/certs.d/$(hostname -f)\:$TLSPORT/ca.crt
 
-kubectl create ingress docker-registry --class=nginx --rule="$(hostname -f)/v2/=docker-registry:5000,tls=$(hostname -f)-cert-secret"
+kubectl create ingress docker-registry --class=nginx --rule="$(hostname -f)/*=docker-registry:5000,tls=$(hostname -f)-cert-secret"
 kubectl annotate ingress docker-registry nginx.ingress.kubernetes.io/rewrite-target="/"
+kubectl annotate ingress docker-registry nginx.ingress.kubernetes.io/proxy-body-size="0"
+kubectl annotate ingress docker-registry nginx.ingress.kubernetes.io/proxy-read-timeout="600"
+kubectl annotate ingress docker-registry nginx.ingress.kubernetes.io/proxy-send-timeout="600"
 
 export USER=$(cat $HOME/temp/registry-creds/registry-user.txt)
 export PASSWORD=$(cat $HOME/temp/registry-creds/registry-pass.txt)
