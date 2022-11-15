@@ -10,5 +10,5 @@ spec:
   dnsNames:
     - MYDOMAIN
   issuerRef:
-    name: MYDOMAIN-ca-issuer
+    name: k8s-ca-issuer
     kind: ClusterIssuer
