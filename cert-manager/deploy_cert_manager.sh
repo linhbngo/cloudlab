@@ -10,16 +10,14 @@ helm upgrade --install cert-manager --namespace cert-manager jetstack/cert-manag
 
 
 cp /local/repository/cert-manager/cluster-issuer.yaml .
-sed -i "s/MYDOMAIN/$(hostname -f)/g" cluster-issuer.yaml
 kubectl apply -f cluster-issuer.yaml
+kubectl get clusterissuers k8s-ca-issuer -o wide
 
-kubectl get clusterissuers $(hostname -f)-ca-issuer -o wide
+#cp /local/repository/cert-manager/x509.yaml .
+#sed -i "s/MYDOMAIN/$(hostname -f)/g" x509.yaml
+#kubectl apply -f x509.yaml
 
-cp /local/repository/cert-manager/x509.yaml .
-sed -i "s/MYDOMAIN/$(hostname -f)/g" x509.yaml
-kubectl apply -f x509.yaml
+#kubectl describe certificate $(hostname -f)-cert
 
-kubectl describe certificate $(hostname -f)-cert
-
-kubectl get secret
-kubectl get secret $(hostname -f)-cert-secret
+#kubectl get secret
+#kubectl get secret $(hostname -f)-cert-secret
