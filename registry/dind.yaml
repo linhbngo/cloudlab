@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: webui
+        app: dind
     spec:
       containers:
         - name: dind
