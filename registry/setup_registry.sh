@@ -18,3 +18,11 @@
    16  cd ../auth
    17  docker run --rm --entrypoint htpasswd registry:2.7.0 -Bbn admin registry > htpasswd
    18  cd ..
+
+
+# on Kubernetes pod
+sudo mkdir -p /etc/docker/certs.d/130.127.132.216:443
+    2  sudo nano /etc/docker/certs.d/130.127.132.216\:443/
+    3  sudo nano /etc/docker/certs.d/130.127.132.216\:443/ca.crt
+    4  docker login -u admin -p https://130.127.132.216:443
+    5  docker login -u admin -p registry https://130.127.132.216:443
