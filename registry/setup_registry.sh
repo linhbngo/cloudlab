@@ -7,7 +7,7 @@ openssl genrsa 1024 > domain.key
 chmod 400 domain.key
 cp /local/repository/registry/san.cnf.template san.cnf
 ip_address=$(ip addr | grep eth0$ | awk -F ' ' '{printf $2}' | awk -F '/' '{printf $1'})
-sed -i "s/IPADDR/${ip_address}/g" sans.cnf
+sed -i "s/IPADDR/${ip_address}/g" san.cnf
 openssl req -new -x509 -nodes -sha1 -days 365 -key domain.key -out domain.crt -config san.cnf
 
 # create login/password in the shared /keys directory
