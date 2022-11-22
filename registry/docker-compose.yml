@@ -14,6 +14,6 @@ services:
       REGISTRY_HTTP_TLS_KEY: /certs/domain.key
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /image
     volumes:
-      - ./auth:/auth
+      - /opt/keys/auth:/auth
       - /image:/image
-      - ./certs:/certs
+      - /opt/keys/certs:/certs
