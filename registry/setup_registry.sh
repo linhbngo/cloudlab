@@ -1,14 +1,18 @@
 #!/bin/bash
 
-1  clear
+# create the certs in the shared /keys directory
+mkdir -p /opt/keys/certs
+cd /opt/keys/certs
+openssl genrsa 1024 > domain.key
+chmod 400 domain.key
+
+
     2  mkdir registry
     3  cd registry/
-    4  mkdir certs
+    4  
     5  mkdir auth
     6  cd certs/
-    7  openss genrsa 1024 > domain.key
-    8  openssl genrsa 1024 > domain.key
-    9  chmod 400 domain.key
+
    10  nano san.cnf
    11  ip addr | grep 130
    12  ip addr
