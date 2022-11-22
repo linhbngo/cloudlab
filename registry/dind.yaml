@@ -22,7 +22,12 @@ spec:
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
+            - name: registry-cert
+              mountPath: /etc/docker/certs.d
       volumes:
         - name: docker-socket
           hostPath:
             path: /var/run/docker.sock
+        - name: registry-cert
+          hostPath:
+            path: /opt/keys/certs.d
