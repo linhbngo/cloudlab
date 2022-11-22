@@ -5,7 +5,7 @@ mkdir -p /opt/keys/certs
 cd /opt/keys/certs
 openssl genrsa 1024 > domain.key
 chmod 400 domain.key
-cp /local/repository/registry/sans.cnf.template sans.cnf
+cp /local/repository/registry/san.cnf.template san.cnf
 ip_address=$(ip addr | grep eth0$ | awk -F ' ' '{printf $2}' | awk -F '/' '{printf $1'})
 sed -i "s/IPADDR/${ip_address}/g" sans.cnf
 openssl req -new -x509 -nodes -sha1 -days 365 -key domain.key -out domain.crt -config san.cnf
