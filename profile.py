@@ -17,9 +17,7 @@ tour = IG.Tour()
 tour.Description(IG.Tour.TEXT,tourDescription)
 request.addTour(tour)
 
-node = request.XenVM("docker")
-node.cores = 8
-node.ram = 8192
+node = request.RawPC("docker")
 node.routable_control_ip = "true" 
 
 bs_landing = node.Blockstore("bs_image", "/image")
