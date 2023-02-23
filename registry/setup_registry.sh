@@ -6,7 +6,7 @@ cd /opt/keys/certs
 openssl genrsa 1024 > domain.key
 chmod 400 domain.key
 cp /local/repository/registry/san.cnf.template san.cnf
-ip_address=$(ip addr | grep eth0$ | awk -F ' ' '{printf $2}' | awk -F '/' '{printf $1'})
+ip_address=$(nslookup $(hostname -f) | grep Server | awk -F ' ' '{printf $2}')
 sed -i "s/IPADDR/${ip_address}/g" san.cnf
 openssl req -new -x509 -nodes -sha1 -days 365 -key domain.key -out domain.crt -config san.cnf
 
