@@ -11,21 +11,13 @@ pc.defineParameter( "userid",
                    "CloudLab user ID to deploy K8s from (should be your CloudLab ID. Defaulted to none", 
                    portal.ParameterType.STRING, 'none' )
 pc.defineParameter( "corecount", 
-                   "Number of cores in each node (4 or more).  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 4 )
-pc.defineParameter( "ramsize", "MB of RAM in each node (4096 or more).  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 4096 )
+                   "Number of cores in each node.  NB: Make certain your requested cluster can supply this quantity.", 
+                   portal.ParameterType.INTEGER, 2 )
+pc.defineParameter( "ramsize", "MB of RAM in each node.  NB: Make certain your requested cluster can supply this quantity.", 
+                   portal.ParameterType.INTEGER, 2048 )
 params = pc.bindParameters()
 
 request = pc.makeRequestRSpec()
-
-if params.n < 2:
-  portal.context.reportError( portal.ParameterError( "You must request at least 2 nodes." ) )
-if params.corecount < 4:
-  portal.context.reportError( portal.ParameterError( "You must request at least 4 cores per node." ) )
-if params.ramsize < 4096:
-  portal.context.reportError( portal.ParameterError( "You must request at least 8192 MB of RAM per node." ) )
-
 
 tourDescription = \
 """
