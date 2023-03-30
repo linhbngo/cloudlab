@@ -5,8 +5,8 @@ import geni.rspec.igext as IG
 pc = portal.Context()
 
 pc.defineParameter( "n", 
-                   "Number of nodes (3 or more)", 
-                   portal.ParameterType.INTEGER, 3 )
+                   "Number of nodes (2 or more)", 
+                   portal.ParameterType.INTEGER, 2 )
 pc.defineParameter( "userid", 
                    "CloudLab user ID to deploy K8s from (should be your CloudLab ID. Defaulted to none", 
                    portal.ParameterType.STRING, 'none' )
@@ -19,8 +19,8 @@ params = pc.bindParameters()
 
 request = pc.makeRequestRSpec()
 
-if params.n < 3:
-  portal.context.reportError( portal.ParameterError( "You must request at least 3 nodes." ) )
+if params.n < 2:
+  portal.context.reportError( portal.ParameterError( "You must request at least 2 nodes." ) )
 if params.corecount < 4:
   portal.context.reportError( portal.ParameterError( "You must request at least 4 cores per node." ) )
 if params.ramsize < 4096:
