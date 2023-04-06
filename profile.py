@@ -64,6 +64,8 @@ for i in range(num_nodes):
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh " + params.userid + " " + str(num_nodes)))
     # install Helm
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
+    # run another worker here
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker_head.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
     
