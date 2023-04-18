@@ -19,7 +19,7 @@ openssl req -new -x509 -nodes -sha1 -days 365 -key domain.key -out domain.crt -c
 # create login/password in the shared /keys directory
 mkdir -p /opt/keys/auth
 cd /opt/keys/auth
-docker run --rm --entrypoint htpasswd registry:2.7 -Bbn admin registry > htpasswd
+docker run --rm --entrypoint htpasswd registry:2.7.0 -Bbn admin registry > htpasswd
 
 # create a template subdirectory to be mounted to pods
 mkdir -p /opt/keys/certs.d/${ip_address}:443
