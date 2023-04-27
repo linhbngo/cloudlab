@@ -7,9 +7,20 @@ sudo mkdir -p /opt/keys/flagdir
 sudo chown nobody:nogroup /opt/keys
 sudo chmod -R a+rwx /opt/keys
 
+# setup home and software directory
+for list_dir in home software scratch
+do
+  sudo mkdir -p /opt/${list_dir}
+  sudo chown nobody:nogroup /opt/${list_dir}
+  sudo chmod -R a+rwx /opt/${list_dir}
+done
+
 for i in $(seq 2 $2)
 do
-  echo "/opt/keys 192.168.1.$i(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+  for nfs_dir in home software scratch keys
+  do 
+    echo "/opt/${nfs_dir} 192.168.1.$i(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+  done
 done
 sudo systemctl restart nfs-kernel-server
 
