@@ -15,6 +15,7 @@ done
 
 for mount_dir in home software scratch
 do
+  mkdir -p /opt/${mount_dir}
   mount 192.168.1.1:/opt/${mount_dir} /opt/${mount_dir}
 done
 
