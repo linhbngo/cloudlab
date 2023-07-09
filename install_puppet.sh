@@ -12,7 +12,11 @@ dnf update -y
 if [ $1 = "server" ]; then
   dnf install -y puppetserver
   sudo sed -i 's/-Xms2g -Xmx2g/-Xms512m -Xmx512m/g' /etc/sysconfig/puppetserver
+  /opt/puppetlabs/bin/puppetserver ca setup
+  systemctl enable --now puppetserver
+  systemctl restart puppetserver
 else
+  
 
 fi
 
