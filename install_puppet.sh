@@ -18,5 +18,7 @@ if [ $1 = "server" ]; then
   systemctl restart puppetserver
 else
   dnf -y install puppet-agent
+  sed -i "s/AGENT/$1/g" /local/repository/puppet/puppet-agent.conf
+  cp /local/repository/puppet/puppet-agent.conf /etc/puppetlabs/puppet/puppet.conf
 fi
 
