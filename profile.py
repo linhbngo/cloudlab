@@ -12,9 +12,9 @@ pc.defineParameter( "userid",
                    portal.ParameterType.STRING, 'none' )
 pc.defineParameter( "corecount", 
                    "Number of cores in each node.  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 2 )
+                   portal.ParameterType.INTEGER, 4 )
 pc.defineParameter( "ramsize", "MB of RAM in each node.  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 2048 )
+                   portal.ParameterType.INTEGER, 8192 )
 params = pc.bindParameters()
 
 request = pc.makeRequestRSpec()
@@ -47,7 +47,7 @@ for i in range(num_nodes):
   bs_landing = node.Blockstore("bs_" + str(i), "/image")
   bs_landing.size = "500GB"
   node.routable_control_ip = "true" 
-  node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:ROCKY9-64-STD"
+  node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS8S-64-STD"
   iface = node.addInterface("if" + str(i))
   iface.component_id = "eth1"
   iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
