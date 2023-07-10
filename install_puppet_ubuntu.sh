@@ -22,4 +22,5 @@ else
   sed -i "s/AGENT/$1/g" /local/repository/puppet/puppet-agent.conf
   cp /local/repository/puppet/puppet-agent.conf /etc/puppetlabs/puppet/puppet.conf
   /opt/puppetlabs/bin/puppet agent --test --ca_server=head
+  systemctl restart puppet
 fi
