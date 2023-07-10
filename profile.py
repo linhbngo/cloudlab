@@ -21,7 +21,7 @@ request = pc.makeRequestRSpec()
 
 tourDescription = \
 """
-This profile provides the template for Docker and Kubernetes installed on CentOS 7.0
+This profile provides the template for Docker and Kubernetes installed on Ubuntu 20.04
 """
 
 #
@@ -47,7 +47,7 @@ for i in range(num_nodes):
   bs_landing = node.Blockstore("bs_" + str(i), "/image")
   bs_landing.size = "500GB"
   node.routable_control_ip = "true" 
-  node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+  node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU20-64-STD"
   iface = node.addInterface("if" + str(i))
   iface.component_id = "eth1"
   iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
@@ -59,13 +59,13 @@ for i in range(num_nodes):
   #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
   #node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
   
-  if i == 0:
+  #if i == 0:
     # install Puppet
-    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet.sh server"))
+    #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet.sh server"))
     # install Helm
     #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
-  else:
-    nodename = "worker-" + str(i)
-    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet.sh " + nodename))
+  #else:
+    #nodename = "worker-" + str(i)
+    #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet.sh " + nodename))
 
 pc.printRequestRSpec(request)
