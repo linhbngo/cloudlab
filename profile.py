@@ -59,13 +59,11 @@ for i in range(num_nodes):
   #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
   #node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
   
-  #if i == 0:
+  if i == 0:
     # install Puppet
-    #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet.sh server"))
-    # install Helm
-    #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
-  #else:
-    #nodename = "worker-" + str(i)
-    #node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet.sh " + nodename))
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet_ubuntu.sh server " + str(num_nodes)))
+  else:
+    nodename = "worker-" + str(i)
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet_ubuntu.sh " + nodename))
 
 pc.printRequestRSpec(request)
