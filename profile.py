@@ -52,11 +52,11 @@ def setupNode(nodeName, nodeCore, nodeMem, bs, public, nodeID):
 for i in range(num_nodes):
    nodename = ""
    if i == 0:
-      nodename = "cas"
-      node = setupNode(nodename, 1, 1024, False, False, i)
-   elif i == 1:
       nodename = "master"
       node = setupNode(nodename, params.corecount, params.ramsize, True, True, i)
+   elif i == 1:
+      nodename = "cas"
+      node = setupNode(nodename, 1, 1024, False, False, i)
    elif i >= 2 and i <= params.nk8s:
       nodename = "k8s-" + str(k8s_count)
       node = setupNode(nodename, params.corecount, params.ramsize, True, True, k8s_count)
@@ -78,7 +78,7 @@ for i in range(num_nodes):
    if i == 0:
       # install Puppet
       node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet_ubuntu.sh server " + str(num_nodes)))
-   else:
+   elif i != 1:
       node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_puppet_ubuntu.sh " + nodename))
 
 pc.printRequestRSpec(request)
