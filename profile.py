@@ -43,7 +43,7 @@ for i in range(num_nodes):
   elif i >= 1 and i <= params.nk8s:
     nodename = "k8s-" + str(k8s_count)
     k8s_count += 1
-  else
+  else:
     nodename = "compute-" + str(compute_count)
     compute_count += 1
      
