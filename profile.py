@@ -33,14 +33,16 @@ request.addTour(tour)
 prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
-num_nodes = params.nk8s + params.nhpc + 1
+num_nodes = params.nk8s + params.nhpc + 2
 k8s_count = 1;
 compute_count = 1;
 for i in range(num_nodes):
   nodename = ""
   if i == 0:
+    nodename = "cas"
+  elif i == 1:
     nodename = "master"
-  elif i >= 1 and i <= params.nk8s:
+  elif i >= 2 and i <= params.nk8s:
     nodename = "k8s-" + str(k8s_count)
     k8s_count += 1
   else:
