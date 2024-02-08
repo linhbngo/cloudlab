@@ -20,6 +20,7 @@ chmod +x /usr/local/bin/docker-compose
 
 # the username needs to be changed
 while IFS= read -r line; do
+  echo $line
   sudo usermod -aG docker $line
   sudo usermod -s /bin/bash $line
 done < <( cat /etc/passwd | grep bash | cut -d':' -f1 )
