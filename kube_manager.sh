@@ -38,3 +38,6 @@ while IFS= read -r line; do
   sudo cp -i /etc/rancher/rke2/rke2.yaml /users/$line/.kube/config
   sudo chown $line: /users/$line/.kube/config
 done < <( cat /etc/passwd | grep bash | cut -d':' -f1 )
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
