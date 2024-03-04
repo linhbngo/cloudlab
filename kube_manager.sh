@@ -24,21 +24,19 @@ do
 done
 sudo systemctl restart nfs-kernel-server
 
-# this subnet is to support flannel
-kubeadm init --pod-network-cidr=10.244.0.0/16 > /opt/keys/kube.log
+# setup RKE2
+curl -sfL https://get.rke2.io | sh - 
+systemctl enable rke2-server.service
+systemctl start rke2-server.service
 
-sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml /local/repository/kube-apiserver.yaml.backup
-sudo sed -i '/^    - --service-cluster-ip-range/a \ \ \ \ - --service-node-port-range=5000-50000' /etc/kubernetes/manifests/kube-apiserver.yaml
+cp /var/lib/rancher/rke2/server/node-token /opt/keys/
 
-sleep 90
+# Setup kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-sudo touch /opt/keys/kube_done
-
-# the username needs to be changed
 while IFS= read -r line; do
   mkdir -p /users/$line/.kube
-  sudo cp -i /etc/kubernetes/admin.conf /users/$line/.kube/config
+  sudo cp -i /etc/rancher/rke2/rke2.yaml /users/$line/.kube/config
   sudo chown $line: /users/$line/.kube/config
 done < <( cat /etc/passwd | grep bash | cut -d':' -f1 )
-
-sudo -H -u $1 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
