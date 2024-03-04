@@ -5,16 +5,16 @@ import geni.rspec.igext as IG
 pc = portal.Context()
 
 pc.defineParameter( "n", 
-                   "Number of nodes (2 or more)", 
-                   portal.ParameterType.INTEGER, 2 )
+                   "Number of nodes (3 or more)", 
+                   portal.ParameterType.INTEGER, 3 )
 pc.defineParameter( "userid", 
                    "CloudLab user ID to deploy K8s from (should be your CloudLab ID. Defaulted to none", 
                    portal.ParameterType.STRING, 'none' )
 pc.defineParameter( "corecount", 
                    "Number of cores in each node.  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 2 )
+                   portal.ParameterType.INTEGER, 4 )
 pc.defineParameter( "ramsize", "MB of RAM in each node.  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 2048 )
+                   portal.ParameterType.INTEGER, 4096 )
 params = pc.bindParameters()
 
 request = pc.makeRequestRSpec()
@@ -55,8 +55,6 @@ for i in range(num_nodes):
   
   # install Docker
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
-  # install Kubernetes
-  node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
   
   if i == 0:
