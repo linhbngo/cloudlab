@@ -15,7 +15,7 @@ do
   sudo chmod -R a+rwx /opt/${list_dir}
 done
 
-for i in $(seq 2 $2)
+for i in $(seq 2 $1)
 do
   for nfs_dir in home software scratch keys
   do 
