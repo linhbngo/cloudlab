@@ -34,13 +34,11 @@ sleep 90
 
 sudo touch /opt/keys/kube_done
 
+# the username needs to be changed
 while IFS= read -r line; do
   mkdir -p /users/$line/.kube
   sudo cp -i /etc/kubernetes/admin.conf /users/$line/.kube/config
   sudo chown $line: /users/$line/.kube/config
-done < <( ls -l /users | grep 4096 | cut -d' ' -f3 )
-
-# weave is not contactable
-#sudo -H -u $1 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+done < <( cat /etc/passwd | grep bash | cut -d':' -f1 )
 
 sudo -H -u $1 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
