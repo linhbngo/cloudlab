@@ -56,7 +56,7 @@ for i in range(num_nodes):
   
   if i == 0:
     # install Kubernetes manager
-    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh " + params.userid + " " + str(num_nodes)))
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh " + str(num_nodes)))
     # install Helm
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
   else:
