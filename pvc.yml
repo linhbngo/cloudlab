@@ -12,7 +12,14 @@ spec:
   storageClassName: local-storage
   local:
     path: /tmp
-
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - worker-1.lngo-195441.edge-pg0.clemson.cloudlab.us
 ---
 
 kind: PersistentVolumeClaim
