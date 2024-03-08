@@ -4,12 +4,14 @@ import geni.rspec.igext as IG
    
 pc = portal.Context()
 
+pc.defineParameter("nodeType", "Node type: XenVM or RawPC",
+                   portal.ParameterType.STRING, "XenVM" )
 pc.defineParameter( "n", 
                    "Number of nodes (3 or more)", 
                    portal.ParameterType.INTEGER, 3 )
 pc.defineParameter( "corecount", 
                    "Number of cores in each node.  NB: Make certain your requested cluster can supply this quantity.", 
-                   portal.ParameterType.INTEGER, 4 )
+                   portal.ParameterType.INTEGER, 4)
 pc.defineParameter( "ramsize", "MB of RAM in each node.  NB: Make certain your requested cluster can supply this quantity.", 
                    portal.ParameterType.INTEGER, 4096 )
 params = pc.bindParameters()
@@ -32,15 +34,21 @@ prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
 num_nodes = params.n
+
+def setupNode(nodeName,nodeType,ramSize,coreCount):
+   if nodeType == "RawPC":
+      return request.RawPC(nodeName)
+   else:
+      node = request.XenVM(nodeName)
+      node.cores = coreCount
+      node.ram = ramSize
+      return node
+
 for i in range(num_nodes):
   if i == 0:
-    node = request.XenVM("head")
-    bs_landing = node.Blockstore("bs_image", "/image")
-    bs_landing.size = "500GB"
+    node = setupNode("head", params.nodeType, params.ramsize, params.corecount)
   else:
-    node = request.XenVM("worker-" + str(i))
-  node.cores = params.corecount
-  node.ram = params.ramsize
+    node = setupNode("worker-" + str(i), params.nodeType, params.ramsize, params.corecount)
   bs_landing = node.Blockstore("bs_" + str(i), "/image")
   bs_landing.size = "500GB"
   node.routable_control_ip = "true" 
