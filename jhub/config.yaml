@@ -8,3 +8,10 @@
 # Chart default values:     https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml
 # Available chart versions: https://hub.jupyter.org/helm-chart/
 #
+
+proxy:
+  secretToken: "asdf"
+singleuser:
+  storage:
+    dynamic:
+      storageClass: local-storage
