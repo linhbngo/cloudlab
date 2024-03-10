@@ -15,7 +15,6 @@ pc.defineParameter( "corecount",
 pc.defineParameter( "ramsize", "MB of RAM in each node.  NB: Make certain your requested cluster can supply this quantity.", 
                    portal.ParameterType.INTEGER, 4096 )
 params = pc.bindParameters()
-
 request = pc.makeRequestRSpec()
 
 tourDescription = \
@@ -23,9 +22,7 @@ tourDescription = \
 This profile provides the template for Docker and Kubernetes installed on Ubuntu 22.04
 """
 
-#
 # Setup the Tour info with the above description and instructions.
-#  
 tour = IG.Tour()
 tour.Description(IG.Tour.TEXT,tourDescription)
 request.addTour(tour)
@@ -34,7 +31,6 @@ prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
 num_nodes = params.n
-
 def setupNode(nodeName,nodeType,ramSize,coreCount):
    if nodeType == "RawPC":
       return request.RawPC(nodeName)
