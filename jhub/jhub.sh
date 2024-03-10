@@ -17,7 +17,7 @@ export HOSTNAME=$(kubectl get nodes -o custom-columns=NAME:.status.addresses[1].
 # Creating local-storage PV on each worker nodes
 while IFS= read -r line; do
   cp ../pv/pvc-template.yml pvc.yml
-  sed -i "s/KUBEHEAD/${line}/g" values.yaml 
+  sed -i "s/WORKERNODE/${line}/g" pvc.yml 
 done < <( kubectl get nodes -o custom-columns=NAME:.status.addresses[1].address | grep worker )
 
 #cp /local/repository/jenkins/values.yaml .
