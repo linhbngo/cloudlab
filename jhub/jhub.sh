@@ -12,7 +12,10 @@ cd jhub
 # Helm chart version 3.2.1 for JupyterHub 4.0.2
 helm upgrade --cleanup-on-fail --install jhub jupyterhub/jupyterhub --namespace jhub --create-namespace --version=3.2.1 --values config.yaml
 
-export HOSTNAME=$(kubectl get nodes -o custom-columns=NAME:.status.addresses[1].address,IP:.status.addresses[0].address | grep head | awk -F ' ' '{print $2}')
+# expose IP address for external access
+export HOSTNODE=$(kubectl get nodes -o custom-columns=NAME:.status.addresses[1].address,IP:.status.addresses[0].address | grep head | awk -F ' ' '{print $2}')
+sed -i "s/HOSTNODE/${HOSTNODE}/g" loadbalancer.sh
+. loadbalancer.sh
 
 # Creating local-storage PV on each worker nodes
 while IFS= read -r line; do
