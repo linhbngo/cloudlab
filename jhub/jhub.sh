@@ -21,6 +21,8 @@ sed -i "s/HOSTNODE/${HOSTNODE}/g" loadbalancer.sh
 while IFS= read -r line; do
   cp /local/repository/pv/pvc-template.yml pvc.yml
   sed -i "s/WORKERNODE/${line}/g" pvc.yml
+  NODENAME=$(echo${line} | cut -d '.' -f 1)
+  sed -i "s/WORKERNAME/${line}/g" pvc.yml
   kubectl apply -f pvc.yml
 done < <( kubectl get nodes -o custom-columns=NAME:.status.addresses[1].address | grep worker )
 
