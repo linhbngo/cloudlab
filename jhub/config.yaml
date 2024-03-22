@@ -9,6 +9,13 @@
 # Available chart versions: https://hub.jupyter.org/helm-chart/
 #
 hub:
+  config:
+    GitHubOAuthenticator:
+      client_id: your-client-id
+      client_secret: your-client-secret
+      oauth_callback_url: https://your-jupyterhub-domain/hub/oauth_callback
+    JupyterHub:
+      authenticator_class: github
   db:
     type: sqlite-pvc
     upgrade:
