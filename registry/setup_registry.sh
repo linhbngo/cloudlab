@@ -26,10 +26,6 @@ mkdir -p /opt/keys/certs.d/${ip_address}:443
 cp /opt/keys/certs/domain.crt /opt/keys/certs.d/${ip_address}:443/ca.crt
 
 # launch registry
+cp -R /opt/keys/certs.d /etc/docker
 cd /local/repository/registry/
 docker-compose up -d
-
-cp -R /opt/keys/certs.d /etc/docker
-ip_addr=$(ip addr | grep eth0$ | awk -F ' ' '{print $2}' | awk -F '/' '{print $1'})
-docker login -u admin -p registry https://${ip_addr}:443
-kubectl create secret generic registry-ca --namespace kube-system --from-file=registry-ca=/opt/keys/certs.d/${ip_addr}\:443/ca.crt
