@@ -24,3 +24,7 @@ docker run --rm --entrypoint htpasswd registry:2.7.0 -Bbn admin registry > htpas
 # create a template subdirectory to be mounted to pods
 mkdir -p /opt/keys/certs.d/${ip_address}:443
 cp /opt/keys/certs/domain.crt /opt/keys/certs.d/${ip_address}:443/ca.crt
+
+# launch registry
+cd /local/repository/registry/
+docker-compose up -d
