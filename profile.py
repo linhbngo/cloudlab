@@ -63,11 +63,11 @@ for i in range(num_nodes):
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh " + str(num_nodes)))
     # install Helm
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
-   # install and deploy registry
-   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/registry/setup_registry.sh"))
-   # install and deploy Jenkins
-   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/jenkins/deploy_jenkins.sh"))
-   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/jenkins/enable_sa.sh"))
+    # install and deploy registry
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/registry/setup_registry.sh"))
+    # install and deploy Jenkins
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/jenkins/deploy_jenkins.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/jenkins/enable_sa.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
     
