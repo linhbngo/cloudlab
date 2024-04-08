@@ -20,7 +20,7 @@ controller:
   componentName: "jenkins-controller"
   image: 
     image: "jenkins/jenkins"
-    tag: "2.361.1-jdk11"
+    tag: "jdk11"
     tagLabel: jdk11
     pullPolicy: "Always"
   # imagePullSecretName:
