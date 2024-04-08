@@ -243,7 +243,7 @@ controller:
     - workflow-aggregator:590.v6a_d052e5a_a_b_5
     - git:5.0.0
     - github:1.37.0
-    - configuration-as-code:1569.vb_72405b_80249
+    - configuration-as-code:1775.v810dc950b_514
     - ssh-agent:295.v9ca_a_1c7cc3a_a_
 
   # Set to false to download the minimum required version of all dependencies.
