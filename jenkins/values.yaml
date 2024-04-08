@@ -241,7 +241,7 @@ controller:
   installPlugins:
     - kubernetes:4203.v1dd44f5b_1cf9
     - workflow-aggregator:590.v6a_d052e5a_a_b_5
-    - git:5.0.0
+    - git:5.2.1
     - github:1.38.0
     - configuration-as-code:1775.v810dc950b_514
     - ssh-agent:295.v9ca_a_1c7cc3a_a_
