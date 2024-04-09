@@ -4,7 +4,7 @@
 mkdir -p /opt/keys/certs
 cd /opt/keys/certs
 rm -f domain.*
-openssl genrsa 1024 > domain.key
+openssl genrsa 2048 > domain.key
 chmod 400 domain.key
 cp /local/repository/registry/san.cnf.template san.cnf
 
