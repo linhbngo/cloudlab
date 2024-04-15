@@ -1,5 +1,5 @@
 {
   "data-root": "/image",
   "exec-opts": ["native.cgroupdriver=systemd"],
-  "insecure-registries" : [ "REGISTRY:5000" ]
+  "insecure-registries" : [ "REGISTRY:30500" ]
 }
