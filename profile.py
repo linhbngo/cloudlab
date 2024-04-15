@@ -64,7 +64,7 @@ for i in range(num_nodes):
     # install Helm
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
     # install and deploy Jenkins
-    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/launch_dashboard.sh"))
+    # node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/launch_dashboard.sh"))
     # install and deploy registry
     # node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/registry/setup_registry.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/registry/setup_insecure.sh"))
