@@ -23,6 +23,7 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE="agent" sh -
 systemctl enable rke2-agent.service
 mkdir -p /etc/rancher/rke2/
 cp /opt/keys/config.yaml /etc/rancher/rke2/config.yaml
+cp /opt/keys/registries.yaml /etc/rancher/rke2/
 systemctl start rke2-agent.service
 
 cp /opt/keys/daemon.json /etc/docker/daemon.json
