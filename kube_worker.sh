@@ -26,10 +26,6 @@ cp /opt/keys/config.yaml /etc/rancher/rke2/config.yaml
 cp /opt/keys/registries.yaml /etc/rancher/rke2/
 systemctl start rke2-agent.service
 
-cp /opt/keys/daemon.json /etc/docker/daemon.json
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-
 #while [ ! -d /opt/keys/certs.d ]; do
 #  sleep 10
 #done
