@@ -24,15 +24,19 @@ do
 done
 sudo systemctl restart nfs-kernel-server
 
-cp /local/repository/docker_config/daemon_template.json /opt/keys/daemon.json
-ip_address=$(ip addr | grep eth0| awk -F ' ' '{print $2}' | awk -F '/' '{print $1'} | tail -n 1)
-sed -i "s/REGISTRY/${ip_address}/g" /opt/keys/daemon.json
-cp /opt/keys/daemon.json /etc/docker/daemon.json
-sudo systemctl daemon-reload
-sudo systemctl restart docker
+#cp /local/repository/docker_config/daemon_template.json /opt/keys/daemon.json
+#ip_address=$(ip addr | grep eth0| awk -F ' ' '{print $2}' | awk -F '/' '{print $1'} | tail -n 1)
+#sed -i "s/REGISTRY/${ip_address}/g" /opt/keys/daemon.json
+#cp /opt/keys/daemon.json /etc/docker/daemon.json
+#sudo systemctl daemon-reload
+#sudo systemctl restart docker
 
 # setup RKE2
-curl -sfL https://get.rke2.io | sh - 
+curl -sfL https://get.rke2.io | sh -
+ip_address=$(ip addr | grep eth0| awk -F ' ' '{print $2}' | awk -F '/' '{print $1'} | tail -n 1)
+cp /local/repository/registry/registries_template.yaml /opt/keys/registries.yaml
+sed -i "s/REGISTRY/${ip_address}/g" /opt/keys/registries.yaml
+cp /opt/keys/registries.yaml /etc/rancher/rke2/
 systemctl enable rke2-server.service
 systemctl start rke2-server.service
 
