@@ -1,0 +1,7 @@
+mirrors:
+  docker.io:
+    endpoint:
+      - "http://REGISTRY:30500"
+  REGISTRY:
+    endpoint:
+      - "http://REGISTRY:30500"
