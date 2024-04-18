@@ -1,7 +1,14 @@
 mirrors:
   docker.io:
     endpoint:
-      - "http://REGISTRY:30500"
+      - "https://REGISTRY:5000"
   REGISTRY:
     endpoint:
-      - "http://REGISTRY:30500"
+      - "https://REGISTRY:5000"
+configs:
+  "REGISTRY:5000":
+    auth:
+      username: admin # this is the registry username
+      password: registry # this is the registry password
+    tls:
+      insecure_skip_verify: true
