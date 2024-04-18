@@ -1,12 +1,12 @@
 mirrors:
   docker.io:
     endpoint:
-      - "https://REGISTRY:5000"
+      - "https://REGISTRY:443"
   REGISTRY:
     endpoint:
-      - "https://REGISTRY:5000"
+      - "https://REGISTRY:443"
 configs:
-  "REGISTRY:5000":
+  "REGISTRY:443":
     auth:
       username: admin # this is the registry username
       password: registry # this is the registry password
