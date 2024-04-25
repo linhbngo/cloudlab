@@ -30,6 +30,7 @@ systemctl enable rke2-server.service
 systemctl start rke2-server.service
 
 cp /var/lib/rancher/rke2/server/node-token /opt/keys/
+echo "$(hostname -f)" | sudo tee -a /opt/keys/server
 echo "server: https://$(hostname -f):9345" | sudo tee -a /opt/keys/config.yaml
 echo "token: $(cat /opt/keys/node-token)" | sudo tee -a /opt/keys/config.yaml
 
