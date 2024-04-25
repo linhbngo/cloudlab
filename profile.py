@@ -68,6 +68,8 @@ for i in range(num_nodes):
     # install and deploy Jenkins
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/jenkins/deploy_jenkins.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/jenkins/enable_sa.sh"))
+  elif i == 1:
+     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_ha_server.sh "))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
     
