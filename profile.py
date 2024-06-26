@@ -63,6 +63,8 @@ for i in range(num_nodes):
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh " + str(num_nodes)))
     # install Helm
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
+    # deploy K8S dashboard
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/k8s_dashboard/deploy_dashboard.sh"))
     # install and deploy registry
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/registry/setup_registry.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/registry/setup_insecure.sh"))
