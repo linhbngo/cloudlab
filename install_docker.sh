@@ -33,14 +33,6 @@ sudo mv /etc/containerd/config.toml /etc/containerd/config.toml.backup
 cp /local/repository/containerd/config.toml /etc/containerd/
 systemctl restart containerd
 
-
-# Firewall setup
-sudo ufw allow 22/tcp -c "SSH"
-sudo ufw allow 80/tcp -c "HTTP"
-sudo ufw allow 443/tcp -c "HTTPS"
-sudo ufw default deny incoming
-sudo ufw enable
-
 sudo apt install nginx
 
 
