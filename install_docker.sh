@@ -33,7 +33,7 @@ sudo mv /etc/containerd/config.toml /etc/containerd/config.toml.backup
 cp /local/repository/containerd/config.toml /etc/containerd/
 systemctl restart containerd
 
-sudo apt install nginx
+sudo apt install -y nginx
 
 
 
