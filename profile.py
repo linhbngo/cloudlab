@@ -27,6 +27,8 @@ bs_landing.size = "500GB"
   
 node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU22-64-STD"
 node.routable_control_ip = "true"
+
 node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
+node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_cert.sh"))
   
 pc.printRequestRSpec(request)
