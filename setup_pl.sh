@@ -48,7 +48,7 @@ sudo -u "$USERNAME" GIT_SSH_COMMAND="ssh -i $KEY_FILE -o StrictHostKeyChecking=n
 cat <<EOF > /home/${USERNAME}/PrairieLearn/docker.sh
 #!/bin/bash
 cd /home/${USERNAME}/PrairieLearn
-sudo docker compose -f docker-compose-production.yml up
+sudo docker compose -f docker-compose-production.yml up -d
 EOF
 
 chmod 755 /home/${USERNAME}/PrairieLearn/docker.sh
@@ -65,7 +65,12 @@ cat <<EOF > /home/${USERNAME}/PrairieLearn/config.json
   "googleRedirectUrl": "https://${DOMAIN}/pl/oauth2callback",
   "hasOauth": true,
 
-  "cookieDomain": ".${DOMAIN}"
+  "cookieDomain": ".${DOMAIN}",
+  "session": {
+    "secure": true,
+    "sameSite": "None"
+  },
+  "trustProxy": true
 }
 EOF
 chown ${USERNAME}: /home/${USERNAME}/PrairieLearn/config.json
