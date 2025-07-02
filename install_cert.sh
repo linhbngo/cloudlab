@@ -72,6 +72,7 @@ EOF
 
 nginx -t
 ln -s /etc/nginx/sites-available/ssl-site /etc/nginx/sites-enabled/
+systemctl reload nginx
 
 # === STEP 8: Done ===
 echo "Installed certificate for $DOMAIN at $INSTALL_PATH"
