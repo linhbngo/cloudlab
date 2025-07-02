@@ -70,6 +70,7 @@ server {
 
 EOF
 
+nginx -t
 ln -s /etc/nginx/sites-available/ssl-site /etc/nginx/sites-enabled/
 
 # === STEP 8: Done ===
