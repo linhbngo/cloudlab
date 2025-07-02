@@ -47,6 +47,7 @@ sudo -u "$USERNAME" GIT_SSH_COMMAND="ssh -i $KEY_FILE -o StrictHostKeyChecking=n
 
 cat <<EOF > /home/${USERNAME}/PrairieLearn/docker.sh
 #!/bin/bash
+cd /home/pl/PrairieLearn
 sudo docker compose -f docker-compose-production.yml up
 EOF
 
