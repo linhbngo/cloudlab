@@ -36,8 +36,8 @@ cp 0000_chain.pem "$INSTALL_PATH/chain.pem"
 chmod 600 "$INSTALL_PATH/privkey.pem"
 chmod 644 "$INSTALL_PATH/"*.pem
 
-# === STEP 7: Optional — Reload Web Server ===
-systemctl reload nginx
+# === STEP 7: Optional — Install Web Server ===
+apt install -y nginx
 
 # === STEP 8: Done ===
 echo "✔ Installed certificate for $DOMAIN at $INSTALL_PATH"
