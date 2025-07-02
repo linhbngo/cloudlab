@@ -6,7 +6,7 @@ SCRIPT_NAME="/home/PrairieLearn/docker.sh"
 KEY_DIR="/home/${USERNAME}/.ssh"
 KEY_FILE="${KEY_DIR}/id_rsa"
 REPO_DIR="/home/${USERNAME}/PrairieLearn"
-REPO_URL="git@github.com:PrairieLearn/PrairieLearn.git"
+REPO_URL="https://github.com/PrairieLearn/PrairieLearn.git"
 
 # 1. Create the user with no password
 if ! id "$USERNAME" &>/dev/null; then
