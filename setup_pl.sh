@@ -31,7 +31,7 @@ chmod 600 "${KEY_DIR}/authorized_keys"
 chown $USERNAME:$USERNAME "${KEY_DIR}/authorized_keys"
 
 # 4. Allow passwordless sudo for docker.sh
-SUDO_RULE="$USERNAME ALL=(ALL) NOPASSWD: /usr/local/bin/${SCRIPT_NAME}"
+SUDO_RULE="$USERNAME ALL=(ALL) NOPASSWD: ${SCRIPT_NAME}"
 SUDO_FILE="/etc/sudoers.d/99-${USERNAME}-docker"
 
 echo "[+] Configuring sudo permissions..."
