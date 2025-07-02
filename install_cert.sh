@@ -50,14 +50,14 @@ server {
 	ssl_protocols		TLSv1.2 TLSv1.3;
 	ssl_ciphers		HIGH:!aNULL:!MD5;
 
-	access_log              /var/log/nginx/nginx.access.log;
-  error_log               /var/log/nginx/nginx.error.log;
+  	access_log              /var/log/nginx/nginx.access.log;
+  	error_log               /var/log/nginx/nginx.error.log;
 
   location / {
     proxy_pass              http://localhost:3000;
-    proxy_set_header        Host $host;
-    proxy_set_header        X-Forwarded-Proto $scheme;
-    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header        Host \$host;
+    proxy_set_header        X-Forwarded-Proto \$scheme;
+    proxy_set_header        X-Forwarded-For \$proxy_add_x_forwarded_for;
     proxy_redirect          off;
   }
 }
@@ -65,7 +65,7 @@ server {
 server {
 	listen 80;
 	server_name ${DOMAIN};
-	return 301 https://$host$request_uri;
+	return 301 https://\$host\$request_uri;
 }
 
 EOF
