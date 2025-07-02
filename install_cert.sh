@@ -39,6 +39,39 @@ chmod 644 "$INSTALL_PATH/"*.pem
 # === STEP 7: Optional — Install Web Server ===
 apt install -y nginx
 
+cat << EOF > /etc/nginx/sites-available/ssl-site
+server {
+	listen 443 ssl;
+	server_name ${DOMAIN};
+	
+	ssl_certificate		/etc/ssl/${DOMAIN}/fullchain.pem;
+	ssl_certificate_key	/etc/ssl/${DOMAIN}/privkey.pem;
+	
+	ssl_protocols		TLSv1.2 TLSv1.3;
+	ssl_ciphers		HIGH:!aNULL:!MD5;
+
+	access_log              /var/log/nginx/nginx.access.log;
+  error_log               /var/log/nginx/nginx.error.log;
+
+  location / {
+    proxy_pass              http://localhost:3000;
+    proxy_set_header        Host $host;
+    proxy_set_header        X-Forwarded-Proto $scheme;
+    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_redirect          off;
+  }
+}
+
+server {
+	listen 80;
+	server_name ${DOMAIN};
+	return 301 https://$host$request_uri;
+}
+
+EOF
+
+ln -s /etc/nginx/sites-available/ssl-site /etc/nginx/sites-enabled/
+
 # === STEP 8: Done ===
-echo "✔ Installed certificate for $DOMAIN at $INSTALL_PATH"
+echo "Installed certificate for $DOMAIN at $INSTALL_PATH"
 ls -l "$INSTALL_PATH"
