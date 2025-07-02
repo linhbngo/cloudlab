@@ -47,12 +47,58 @@ sudo -u "$USERNAME" GIT_SSH_COMMAND="ssh -i $KEY_FILE -o StrictHostKeyChecking=n
 
 cat <<EOF > /home/${USERNAME}/PrairieLearn/docker.sh
 #!/bin/bash
-cd /home/pl/PrairieLearn
+cd /home/${USERNAME}/PrairieLearn
 sudo docker compose -f docker-compose-production.yml up
 EOF
 
 chmod 755 /home/${USERNAME}/PrairieLearn/docker.sh
 chown ${USERNAME}: /home/${USERNAME}/PrairieLearn/docker.sh
+
+# 7. Create config.json (need to fill in more info
+
+DOMAIN=$(hostname -f)
+cat <<EOF > /home/${USERNAME}/PrairieLearn/config.json
+{
+  "serverCanonicalHost": "https://${DOMAIN}",
+  "googleClientId": "",
+  "googleClientSecret": "",
+  "googleRedirectUrl": "https://${DOMAIN}/pl/oauth2callback",
+  "hasOauth": true,
+
+  "cookieDomain": ".${DOMAIN}"
+}
+EOF
+chown ${USERNAME}: /home/${USERNAME}/PrairieLearn/config.json
+
+# 8. Update docker-compose-production.yaml
+mv /home/${USERNAME}/PrairieLearn/docker-compose-production.yml /home/${USERNAME}/PrairieLearn/docker-compose.production.yml.default
+cat <<EOF > /home/${USERNAME}/PrairieLearn/docker-compose.production.yml
+services:
+  pl:
+    image: prairielearn/prairielearn:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - postgres:/var/postgres
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${HOME}/pl_ag_jobs:/jobs
+      - ./config.json:/PrairieLearn/config.json
+      - ${HOME}/.ssh:/root/.ssh
+
+    container_name: pl
+    environment:
+      - HOST_JOBS_DIR=${HOME}/pl_ag_jobs
+      - NODE_ENV=production
+    # This must be changed if you've changed Docker's address pools.
+    # i.e., "default-address-pools" in /etc/docker/daemon.json
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
+
+volumes:
+  postgres:
+EOF
+
+
 
 echo "[✔] Setup complete."
 echo "[→] SSH keys stored in: $KEY_FILE and ${KEY_FILE}.pub"
