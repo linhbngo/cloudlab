@@ -64,6 +64,7 @@ cat <<EOF > /home/${USERNAME}/PrairieLearn/config.json
   "googleClientSecret": "",
   "googleRedirectUrl": "https://${DOMAIN}/pl/oauth2callback",
   "hasOauth": true,
+  "fileEditorUseGit": true,
 
   "cookieDomain": ".${DOMAIN}",
   "session": {
