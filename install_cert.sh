@@ -23,7 +23,7 @@ openssl genrsa -out "$DOMAIN.key" 2048
 openssl req -new -key "$DOMAIN.key" -subj "/CN=$DOMAIN" -out "$DOMAIN.csr"
 
 # === STEP 4: Obtain certificate using standalone plugin ===
-certbot certonly --csr "$DOMAIN.csr" --standalone \
+certbot certonly -d "$DOMAIN" --standalone \
   --preferred-challenges tls-alpn \
   --non-interactive --agree-tos --email "$EMAIL"
 
