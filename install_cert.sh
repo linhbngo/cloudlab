@@ -11,7 +11,11 @@ mkdir -p "$INSTALL_PATH"
 
 # === STEP 2: Install Certbot ===
 apt update
-apt install -y openssl certbot
+apt install -y openssl 
+snap install core
+snap refresh core
+snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 # === STEP 3: Generate private key and CSR ===
 cd "$CERTBOT_TMP"
