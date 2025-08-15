@@ -24,7 +24,7 @@ openssl req -new -key "$DOMAIN.key" -subj "/CN=$DOMAIN" -out "$DOMAIN.csr"
 
 # === STEP 4: Obtain certificate using standalone plugin ===
 certbot certonly --csr "$DOMAIN.csr" --standalone \
-  --preferred-challenges http \
+  --preferred-challenges tls-alpn \
   --non-interactive --agree-tos --email "$EMAIL"
 
 # === STEP 5: Combine and Install ===
